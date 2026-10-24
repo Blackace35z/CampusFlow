@@ -43,6 +43,7 @@ The project combines a React and TypeScript frontend with a FastAPI backend and 
 CampusFlow/
 ├── backend/
 │   ├── migrations/
+│   ├── .env.example
 │   ├── database.py
 │   ├── main.py
 │   ├── models.py
@@ -52,8 +53,10 @@ CampusFlow/
 │   ├── src/
 │   ├── package.json
 │   └── vite.config.ts
-├── seed_courses.py
-├── seed_data.py
+├── scripts/
+│   ├── seed_data.py       # sample students, professors, courses
+│   └── seed_courses.py    # sample course catalogue
+├── LICENSE
 └── README.md
 ```
 
@@ -88,13 +91,13 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Create a `.env` file inside `backend/` and configure your PostgreSQL connection:
+Copy `backend/.env.example` to `backend/.env` and set your PostgreSQL connection URL:
 
 ```env
-DATABASE_URL=your_postgresql_connection_url
+DATABASE_URL=postgresql://username:password@localhost:5432/campusflow
 ```
 
-Replace the placeholder with your actual database connection URL. Never commit your real `.env` file or database credentials.
+Replace the placeholders with your actual credentials. Never commit your real `.env` file or database credentials.
 
 Make sure PostgreSQL is running and the target database exists.
 
@@ -134,6 +137,20 @@ CampusFlow uses PostgreSQL for persistent data storage and Alembic to manage dat
 
 Database credentials are configured locally through environment variables and should never be committed to source control.
 
+## Sample Data
+
+With the backend running, load demo students, professors and courses:
+
+```bash
+python scripts/seed_data.py
+python scripts/seed_courses.py
+```
+
+## Screenshots
+
+<!-- Add 2-3 screenshots to docs/screenshots/ and link them here, for example: -->
+<!-- ![Dashboard](docs/screenshots/dashboard.png) -->
+
 ## Project Status
 
 CampusFlow is an ongoing portfolio project focused on full-stack development, database design, API development, and modern dashboard interfaces.
@@ -143,3 +160,7 @@ CampusFlow is an ongoing portfolio project focused on full-stack development, da
 **Blackace35z**
 
 GitHub: [@Blackace35z](https://github.com/Blackace35z)
+
+## License
+
+Released under the [MIT License](LICENSE).
